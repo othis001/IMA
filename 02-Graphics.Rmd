@@ -1,0 +1,16 @@
+# Basics of ggplot2
+
+```{r setup}
+library(ggplot2)
+library(dplyr)
+data(Galton, package = "mosaicData")
+```
+
+```{r}
+names(Galton)
+```
+
+```{r}
+Galton %>%
+  ggplot(aes(x = mother, y = father) )
+```

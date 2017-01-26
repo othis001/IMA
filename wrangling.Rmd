@@ -1,0 +1,40 @@
+---
+title: "Untitled"
+author: "Oliver Thistlethwaite"
+date: "January 24, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data(diamonds, package = "ggplot2")
+```
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(mcarat = mean(carat)) %>%
+  arrange(desc(mcarat)) %>%
+  head(1)
+
+```
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(mtable = mean(table)) %>%
+  arrange(desc(mtable)) %>%
+  head(1)
+
+```
+
+```{r}
+data(diamonds, package = "ggplot2")
+```
+
+
+

@@ -1,0 +1,114 @@
+---
+title: "Birthdays"
+author: "Oliver Thistlethwaite"
+date: "January 25, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+data(Birthdays, package = "mosaicData")
+head(Birthdays)
+```
+
+
+```{r}
+DailyBirths <- Birthdays %>%
+  group_by(date) %>%
+  summarise(total = sum(births))
+
+head(DailyBirths)
+
+DailyBirths %>%
+  ggplot(aes(x=date, y = total)) + geom_point()
+
+```
+
+```{r}
+WeeklyBirths <- Birthdays %>%
+  mutate(week = week(date)) %>%
+  group_by(week) %>%
+  summarise(total = sum(births))
+
+head(WeeklyBirths)
+
+WeeklyBirths %>%
+  ggplot(aes(x=week, y = total)) + geom_point()
+
+```
+
+
+```{r}
+MonthlyBirths <- Birthdays %>%
+  mutate(month = month(date)) %>%
+  group_by(month) %>%
+  summarise(total = sum(births))
+
+head(MonthlyBirths)
+
+MonthlyBirths %>%
+  ggplot(aes(x=month, y = total)) + geom_point()
+
+```
+
+```{r}
+YDailyBirths <- Birthdays %>%
+  mutate(yday = yday(date)) %>%
+  group_by(yday) %>%
+  summarise(total = sum(births))
+
+head(YDailyBirths)
+
+YDailyBirths %>%
+  ggplot(aes(x=yday, y = total)) + geom_point()
+
+```
+
+```{r}
+WDailyBirths <- Birthdays %>%
+  mutate(wday = wday(date, label = TRUE)) %>%
+  group_by(wday) %>%
+  summarise(total = sum(births))
+
+head(WDailyBirths)
+
+WDailyBirths %>%
+  ggplot(aes(x=wday, y = total)) + geom_point()
+
+```
+
+```{r}
+MyTwoYears <- DailyBirths %>%
+  filter(year(date) == 1980 | year(date) == 1981)
+
+head(MyTwoYears)
+
+MyTwoYears %>%
+  ggplot(aes(x=date, y = total, color=wday(date, label = TRUE))) + geom_line()
+
+```{r}
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv", stringsAsFactors = FALSE) %>%
+  mutate(date = as.POSIXct(dmy(date))) %>%
+    filter(year(date) == 1980 | year(date) == 1981)
+
+
+
+View(Holidays)
+
+MyTwoYears %>%
+  ggplot(aes(x=date, y = total, color=wday(date, label = TRUE))) + geom_line() + geom_vline(data = Holidays, aes(xintercept = as.numeric(date), color = wday(date, label = TRUE))) + geom_text(data = Holidays, aes(x = date, y = 11000, label = holiday, angle = 45, size = 1, color = "black"))
+
+```
+
+
+
+
+

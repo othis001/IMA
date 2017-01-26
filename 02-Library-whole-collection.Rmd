@@ -1,0 +1,57 @@
+
+```{r include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(printr)
+knitr::opts_chunk$set(echo=FALSE, message = FALSE)
+options(digits=2)
+```
+
+<!-- Data provided by Katy Gabrio gabrio@macalester.edu -->
+
+```{r include=FALSE}
+load("Inventory.rda")
+LOC <- read.csv("LOC-Codes.csv",
+                stringsAsFactors = FALSE)
+Inventory <-
+  Inventory %>%
+  mutate(Last.Issued.Date = lubridate::ymd_hms(Last.Issued.Date))
+```
+
+The library inventory, as reported on July 30, 2015, consists of `r #nrow(Inventory)` items.  The large majority of these are books, but there are many other formats as well. The following types compose 99.9% of the library holdings. 
+```{r}
+Inventory %>%
+  group_by(Material.Format) %>%
+  tally() %>% 
+  arrange(n) %>%
+  filter(cumsum(n) > nrow(Inventory)/1000) %>%
+  arrange(desc(n)) %>%
+  as.data.frame(.)
+```
+
+A record is kept of how many times each item has been checked out since the start of record-keeping, and how many times it has been checked out in the last year.^[Judging from the dates in the records, record keeping for the data studied here started in January 2001.]  In addition, the date of the most recent check out is recorded.
+
+```{r}
+Inventory %>%
+  group_by(Material.Format) %>%
+  summarise(events_per_item_total = sum(Issued.Count, na.rm=TRUE)/n(),
+            events_per_item_YTD = sum(Issued.Count.YTD, na.rm=TRUE)/n(), count=n()) %>%
+  arrange(desc(events_per_item_total)) %>% 
+  filter(count > 500) %>%
+  as.data.frame()
+```
+
+Presumably, some kinds of items (e.g. newspapers) are not checked out.  Others are in obsolete formats (e.g. audiobook cassettes). By far the most heavily used items in the inventory are "Objects" and "otr."  For books and journals, by far the largest components of the library's collection, use is much less.  The average book has been checked out about 2 times since January 2001. Journals seem not to be checked out much.  This could be because of sparse use or because they are used without being checked out.
+
+## Books
+
+The analysis presented above indicates that the "average book" has been used about 2 times since 2001, and about 0.2 times in the last year.  It's important to note, however, that book use is highly skewed.  Some books are used many times; many books are not used at all.  
+
+
+```{r}
+CircBooks <-
+  Inventory %>%
+  filter(Material.Format == "Book", 
+         grepl("Stacks - Level [2|3|4]$", Shelving.Location) |
+         grepl("Service Desk - Res", Shelving.Location))
+```

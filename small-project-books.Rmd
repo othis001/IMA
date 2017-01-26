@@ -1,0 +1,47 @@
+---
+title: "small-project-books"
+author: "Oliver Thistlethwaite"
+date: "January 24, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+This is an R program on data computing using the Macalester College library collection. It is available at 'http://tiny.cc/dcf/Library-small.rda'.
+
+First we load the library file that we have downloaded previously. This will create two data frames named Inv (inventory) and Bks (books). Inv contains the libraries collection and Bks is about individual books which may or may not be in the libraries collection.
+
+```{r}
+load("Library-small.rda")
+```
+
+## Basics
+
+This calculates the number of cases in Inv and then in Bks.
+
+```{r}
+nrow(Inv)
+nrow(Bks)
+```
+
+Now we will look at the names of variables in Inv and then Bks.
+
+```{r}
+names(Inv)
+names(Bks)
+```
+
+Next we will look at the number of books with different Current.status .
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+Finally we will look at how many times books have been checked 
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
