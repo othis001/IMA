@@ -1,0 +1,48 @@
+---
+title: "Economist"
+author: "Oliver Thistlethwaite"
+date: "January 26, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+load("ScorecardSmall.Rda")
+
+ScoreQ1 <- ScorecardSmall %>%
+  group_by(ADM_RATE) %>%
+  filter(CONTROL == 1) %>%
+  summarise(net = mean(NPT41_PUB))
+
+ScoreQ1 %>%
+  ggplot(aes(x=ADM_RATE, y = net)) + geom_point()
+```
+
+```{r}
+
+ ScorecardSmall <- ScorecardSmall %>%
+    filter(CONTROL != 3) %>%
+    gather(long_name, net, NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV) %>%
+    select(CONTROL, INSTNM, ADM_RATE, long_name, net) %>%
+    filter(complete.cases(.))
+
+NPT4names <- read.csv("NPT4-names.csv")
+
+ScorecardSmall <-ScorecardSmall %>%
+  left_join(NPT4names)
+
+
+head(ScorecardSmall)
+
+ScorecardSmall %>%
+    ggplot(aes(x=ADM_RATE, y = net)) + geom_point(color = "blue", alpha = 0.2 ) + facet_grid(CONTROL ~ short_name) + geom_smooth(color = "black")
+
+```
+
