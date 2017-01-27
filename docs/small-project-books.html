@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Oliver Thistlethwaite" />
+
+<meta name="date" content="2017-01-24" />
+
+<title>small-project-books</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">small-project-books</h1>
+<h4 class="author"><em>Oliver Thistlethwaite</em></h4>
+<h4 class="date"><em>January 24, 2017</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#basics">Basics</a></li>
+</ul>
+</div>
+
+<p>This is an R program on data computing using the Macalester College library collection. It is available at ‘<a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>’.</p>
+<p>First we load the library file that we have downloaded previously. This will create two data frames named Inv (inventory) and Bks (books). Inv contains the libraries collection and Bks is about individual books which may or may not be in the libraries collection.</p>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<p>This calculates the number of cases in Inv and then in Bks.</p>
+<pre class="r"><code>nrow(Inv)</code></pre>
+<pre><code>## [1] 2000</code></pre>
+<pre class="r"><code>nrow(Bks)</code></pre>
+<pre><code>## [1] 3765</code></pre>
+<p>Now we will look at the names of variables in Inv and then Bks.</p>
+<pre class="r"><code>names(Inv)</code></pre>
+<pre><code>##  [1] &quot;Shelving.Location&quot;     &quot;Item.Type&quot;            
+##  [3] &quot;Call.Number&quot;           &quot;Author&quot;               
+##  [5] &quot;Title.or.Description&quot;  &quot;Textual.Holdings&quot;     
+##  [7] &quot;Material.Format&quot;       &quot;OCLC.Number&quot;          
+##  [9] &quot;ISBN&quot;                  &quot;Item.Barcode&quot;         
+## [11] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+## [13] &quot;Loan.Date.Due&quot;         &quot;Issued.Count&quot;         
+## [15] &quot;Issued.Count.YTD&quot;      &quot;Last.Issued.Date&quot;     
+## [17] &quot;Last.Inventoried.Date&quot; &quot;Item.Deleted.Date&quot;</code></pre>
+<pre class="r"><code>names(Bks)</code></pre>
+<pre><code>##  [1] &quot;OCLC.Number&quot;          &quot;Format&quot;               &quot;Subject&quot;             
+##  [4] &quot;Title&quot;                &quot;Author&quot;               &quot;Publication.Date&quot;    
+##  [7] &quot;Edition&quot;              &quot;Publisher&quot;            &quot;ISBN&quot;                
+## [10] &quot;Language&quot;             &quot;Physical.Description&quot; &quot;Genre&quot;               
+## [13] &quot;LC.Call.Number&quot;       &quot;Dewey.Call.Number&quot;    &quot;Local.Call.Number&quot;</code></pre>
+<p>Next we will look at the number of books with different Current.status .</p>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Current.Status</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">AVAILABLE</td>
+<td align="right">1866</td>
+</tr>
+<tr class="even">
+<td align="left">MISSING</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">ON_LOAN</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">WITHDRAWN</td>
+<td align="right">115</td>
+</tr>
+</tbody>
+</table>
+<p>Finally we will look at how many times books have been checked</p>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Issued.Count</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">996</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">337</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">203</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">121</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">69</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">46</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">38</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">29</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">24</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="right">11</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">12</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">13</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">14</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">15</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">16</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">17</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">18</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">19</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">21</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">22</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">23</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">24</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">25</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">26</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">27</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">28</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">30</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">31</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">33</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">34</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">35</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">36</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">38</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">45</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">49</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">50</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">75</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">78</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">79</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">92</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">117</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">239</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#books">Books</a></li>
+</ul>
+</div>
+
+<!-- Data provided by Katy Gabrio gabrio@macalester.edu -->
+<p>The library inventory, as reported on July 30, 2015, consists of items. The large majority of these are books, but there are many other formats as well. The following types compose 99.9% of the library holdings.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Material.Format</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Book</td>
+<td align="right">362871</td>
+</tr>
+<tr class="even">
+<td align="left">Jrnl</td>
+<td align="right">30240</td>
+</tr>
+<tr class="odd">
+<td align="left">Video_DVD</td>
+<td align="right">13812</td>
+</tr>
+<tr class="even">
+<td align="left">Music_CD</td>
+<td align="right">5399</td>
+</tr>
+<tr class="odd">
+<td align="left">Video_VHS</td>
+<td align="right">5176</td>
+</tr>
+<tr class="even">
+<td align="left">MsScr</td>
+<td align="right">4180</td>
+</tr>
+<tr class="odd">
+<td align="left">Object</td>
+<td align="right">2458</td>
+</tr>
+<tr class="even">
+<td align="left">Map</td>
+<td align="right">1699</td>
+</tr>
+<tr class="odd">
+<td align="left">Book_Mic</td>
+<td align="right">1505</td>
+</tr>
+<tr class="even">
+<td align="left">Book_thsis</td>
+<td align="right">1052</td>
+</tr>
+<tr class="odd">
+<td align="left">Book_Digital</td>
+<td align="right">720</td>
+</tr>
+<tr class="even">
+<td align="left">Video_Bluray</td>
+<td align="right">157</td>
+</tr>
+<tr class="odd">
+<td align="left">News</td>
+<td align="right">150</td>
+</tr>
+<tr class="even">
+<td align="left">Video</td>
+<td align="right">137</td>
+</tr>
+<tr class="odd">
+<td align="left">Book_LargePrint</td>
+<td align="right">104</td>
+</tr>
+</tbody>
+</table>
+<p>A record is kept of how many times each item has been checked out since the start of record-keeping, and how many times it has been checked out in the last year.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> In addition, the date of the most recent check out is recorded.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Material.Format</th>
+<th align="right">events_per_item_total</th>
+<th align="right">events_per_item_YTD</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Object</td>
+<td align="right">116.45</td>
+<td align="right">36.20</td>
+<td align="right">2458</td>
+</tr>
+<tr class="even">
+<td align="left">Video_DVD</td>
+<td align="right">10.14</td>
+<td align="right">0.77</td>
+<td align="right">13812</td>
+</tr>
+<tr class="odd">
+<td align="left">Music_CD</td>
+<td align="right">9.62</td>
+<td align="right">0.22</td>
+<td align="right">5399</td>
+</tr>
+<tr class="even">
+<td align="left">Video_VHS</td>
+<td align="right">3.31</td>
+<td align="right">0.18</td>
+<td align="right">5176</td>
+</tr>
+<tr class="odd">
+<td align="left">Book</td>
+<td align="right">1.98</td>
+<td align="right">0.22</td>
+<td align="right">362871</td>
+</tr>
+<tr class="even">
+<td align="left">MsScr</td>
+<td align="right">0.86</td>
+<td align="right">0.02</td>
+<td align="right">4180</td>
+</tr>
+<tr class="odd">
+<td align="left">Book_thsis</td>
+<td align="right">0.64</td>
+<td align="right">0.06</td>
+<td align="right">1052</td>
+</tr>
+<tr class="even">
+<td align="left">Map</td>
+<td align="right">0.62</td>
+<td align="right">0.03</td>
+<td align="right">1699</td>
+</tr>
+<tr class="odd">
+<td align="left">Book_Digital</td>
+<td align="right">0.11</td>
+<td align="right">0.04</td>
+<td align="right">720</td>
+</tr>
+<tr class="even">
+<td align="left">Book_Mic</td>
+<td align="right">0.06</td>
+<td align="right">0.00</td>
+<td align="right">1505</td>
+</tr>
+<tr class="odd">
+<td align="left">Jrnl</td>
+<td align="right">0.04</td>
+<td align="right">0.00</td>
+<td align="right">30240</td>
+</tr>
+</tbody>
+</table>
+<p>Presumably, some kinds of items (e.g. newspapers) are not checked out. Others are in obsolete formats (e.g. audiobook cassettes). By far the most heavily used items in the inventory are “Objects” and “otr.” For books and journals, by far the largest components of the library’s collection, use is much less. The average book has been checked out about 2 times since January 2001. Journals seem not to be checked out much. This could be because of sparse use or because they are used without being checked out.</p>
+<div id="books" class="section level2">
+<h2>Books</h2>
+<p>The analysis presented above indicates that the “average book” has been used about 2 times since 2001, and about 0.2 times in the last year. It’s important to note, however, that book use is highly skewed. Some books are used many times; many books are not used at all.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Judging from the dates in the records, record keeping for the data studied here started in January 2001.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

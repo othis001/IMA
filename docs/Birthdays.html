@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Oliver Thistlethwaite" />
+
+<meta name="date" content="2017-01-25" />
+
+<title>Birthdays</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Birthdays</h1>
+<h4 class="author"><em>Oliver Thistlethwaite</em></h4>
+<h4 class="date"><em>January 25, 2017</em></h4>
+
+</div>
+
+
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+library(lubridate)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     date</code></pre>
+<pre class="r"><code>data(Birthdays, package = &quot;mosaicData&quot;)
+head(Birthdays)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">state</th>
+<th align="right">year</th>
+<th align="right">month</th>
+<th align="right">day</th>
+<th align="left">date</th>
+<th align="left">wday</th>
+<th align="right">births</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">AK</td>
+<td align="right">1969</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1969-01-01</td>
+<td align="left">Wed</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">AL</td>
+<td align="right">1969</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1969-01-01</td>
+<td align="left">Wed</td>
+<td align="right">174</td>
+</tr>
+<tr class="odd">
+<td align="left">AR</td>
+<td align="right">1969</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1969-01-01</td>
+<td align="left">Wed</td>
+<td align="right">78</td>
+</tr>
+<tr class="even">
+<td align="left">AZ</td>
+<td align="right">1969</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1969-01-01</td>
+<td align="left">Wed</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="left">CA</td>
+<td align="right">1969</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1969-01-01</td>
+<td align="left">Wed</td>
+<td align="right">824</td>
+</tr>
+<tr class="even">
+<td align="left">CO</td>
+<td align="right">1969</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1969-01-01</td>
+<td align="left">Wed</td>
+<td align="right">100</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>DailyBirths &lt;- Birthdays %&gt;%
+  group_by(date) %&gt;%
+  summarise(total = sum(births))
+
+head(DailyBirths)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">date</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1969-01-01</td>
+<td align="right">8486</td>
+</tr>
+<tr class="even">
+<td align="left">1969-01-02</td>
+<td align="right">9002</td>
+</tr>
+<tr class="odd">
+<td align="left">1969-01-03</td>
+<td align="right">9542</td>
+</tr>
+<tr class="even">
+<td align="left">1969-01-04</td>
+<td align="right">8960</td>
+</tr>
+<tr class="odd">
+<td align="left">1969-01-05</td>
+<td align="right">8390</td>
+</tr>
+<tr class="even">
+<td align="left">1969-01-06</td>
+<td align="right">9560</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>DailyBirths %&gt;%
+  ggplot(aes(x=date, y = total)) + geom_point()</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>WeeklyBirths &lt;- Birthdays %&gt;%
+  mutate(week = week(date)) %&gt;%
+  group_by(week) %&gt;%
+  summarise(total = sum(births))
+
+head(WeeklyBirths)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">week</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1252303</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1307253</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1321998</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1319819</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">1314877</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1322192</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>WeeklyBirths %&gt;%
+  ggplot(aes(x=week, y = total)) + geom_point()</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>MonthlyBirths &lt;- Birthdays %&gt;%
+  mutate(month = month(date)) %&gt;%
+  group_by(month) %&gt;%
+  summarise(total = sum(births))
+
+head(MonthlyBirths)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">month</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5759165</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">5362585</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">5868501</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">5560775</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">5785348</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">5758571</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>MonthlyBirths %&gt;%
+  ggplot(aes(x=month, y = total)) + geom_point()</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>YDailyBirths &lt;- Birthdays %&gt;%
+  mutate(yday = yday(date)) %&gt;%
+  group_by(yday) %&gt;%
+  summarise(total = sum(births))
+
+head(YDailyBirths)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">yday</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">160369</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">169896</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">180036</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">182854</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">184145</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">186726</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>YDailyBirths %&gt;%
+  ggplot(aes(x=yday, y = total)) + geom_point()</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>WDailyBirths &lt;- Birthdays %&gt;%
+  mutate(wday = wday(date, label = TRUE)) %&gt;%
+  group_by(wday) %&gt;%
+  summarise(total = sum(births))
+
+head(WDailyBirths)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">wday</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Sun</td>
+<td align="right">8.6e+06</td>
+</tr>
+<tr class="even">
+<td align="left">Mon</td>
+<td align="right">1.0e+07</td>
+</tr>
+<tr class="odd">
+<td align="left">Tues</td>
+<td align="right">1.1e+07</td>
+</tr>
+<tr class="even">
+<td align="left">Wed</td>
+<td align="right">1.1e+07</td>
+</tr>
+<tr class="odd">
+<td align="left">Thurs</td>
+<td align="right">1.0e+07</td>
+</tr>
+<tr class="even">
+<td align="left">Fri</td>
+<td align="right">1.1e+07</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>WDailyBirths %&gt;%
+  ggplot(aes(x=wday, y = total)) + geom_point()</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>MyTwoYears &lt;- DailyBirths %&gt;%
+  filter(year(date) == 1980 | year(date) == 1981)
+
+head(MyTwoYears)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">date</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1980-01-01</td>
+<td align="right">8232</td>
+</tr>
+<tr class="even">
+<td align="left">1980-01-02</td>
+<td align="right">9011</td>
+</tr>
+<tr class="odd">
+<td align="left">1980-01-03</td>
+<td align="right">9902</td>
+</tr>
+<tr class="even">
+<td align="left">1980-01-04</td>
+<td align="right">9939</td>
+</tr>
+<tr class="odd">
+<td align="left">1980-01-05</td>
+<td align="right">8691</td>
+</tr>
+<tr class="even">
+<td align="left">1980-01-06</td>
+<td align="right">8213</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>MyTwoYears %&gt;%
+  ggplot(aes(x=date, y = total, color=wday(date, label = TRUE))) + geom_line()</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>Holidays &lt;- read.csv(&quot;http://tiny.cc/dcf/US-Holidays.csv&quot;, stringsAsFactors = FALSE) %&gt;%
+  mutate(date = as.POSIXct(dmy(date))) %&gt;%
+    filter(year(date) == 1980 | year(date) == 1981)
+
+
+
+View(Holidays)
+
+MyTwoYears %&gt;%
+  ggplot(aes(x=date, y = total, color=wday(date, label = TRUE))) + geom_line() + geom_vline(data = Holidays, aes(xintercept = as.numeric(date), color = wday(date, label = TRUE))) + geom_text(data = Holidays, aes(x = date, y = 11000, label = holiday, angle = 45, size = 1, color = &quot;black&quot;))</code></pre>
+<p><img src="Birthdays_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
